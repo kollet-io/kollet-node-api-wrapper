@@ -107,7 +107,7 @@ class Kollet {
     }
 
     /**
-     * 
+     * Get an estimated fee for sending funds on a particular cryptocurrency network.
      * @param {sting} amount The amount of cryptocurrency units you want to send out.
      * @param {string} currency This is the code of the supported cryptocurrency. 
      * Visit the supported cryptocurrency section to view the currencies supported and their various codes. e.g. BTC
@@ -122,6 +122,34 @@ class Kollet {
             amount,
             currency,
             duration
+        }
+
+        let config = {
+            method: "post",
+            body: JSON.stringify(payload)
+        };
+
+        return this._request(url, config);
+    }
+
+    /**
+     * Send out funds to another wallet address on a particular cryptocurrency network.
+     * @param {string} amount The amount of cryptocurrency units you want to send out.
+     * @param {string} currency This is the code of the supported cryptocurrency. 
+     * Visit the supported cryptocurrency section to view the currencies supported and their various codes. e.g. BTC
+     * @param {string} duration This is the duration code. This duration code determines how much fees you actually pay and how 
+     * fast you your recipient receive their funds. Refer to https://docs.kollet.io/docs/kollet-merchant/docs/2.0.Network-Fee-And-Duration.md
+     * for the different durations.
+     * @param {string} recipient This is the destination. The receiving wallet address / recipient.
+     */
+    sendCoins(amount = "", currency = "", duration = "", recipient = "") {
+        let url = this.#endpoints.send;
+        let payload = {
+            accessToken: this.apiKey,
+            amount,
+            currency,
+            duration,
+            recipient
         }
 
         let config = {
