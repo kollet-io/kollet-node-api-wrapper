@@ -1,0 +1,26 @@
+{
+  "name": "kollet-node-api-wrapper",
+  "version": "0.0.1",
+  "description": "Node API wrapper for the Kollet Merchant API",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kollet-io/kollet-node-api-wrapper.git"
+  },
+  "keywords": [
+    "Kollet API",
+    "Merchant API Wrapper",
+    "Kollet API Wrapper",
+    "Kollet Merchant API"
+  ],
+  "author": "Kollet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kollet-io/kollet-node-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/kollet-io/kollet-node-api-wrapper#readme"
+}
