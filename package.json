@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/kollet-io/kollet-node-api-wrapper/issues"
   },
-  "homepage": "https://github.com/kollet-io/kollet-node-api-wrapper#readme"
+  "homepage": "https://github.com/kollet-io/kollet-node-api-wrapper#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "mocha": "^9.0.2"
+  }
 }
