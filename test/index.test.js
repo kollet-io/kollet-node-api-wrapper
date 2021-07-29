@@ -2,8 +2,7 @@ const expect = require('chai').expect
 const Kollet = require("../src/index")
 
 // Provide API_KEY to run test
-// let client = new Kollet(process.env.API_KEY);
-let client = new Kollet("6fc90f4b-2c4d-4b55-9b36-55c6deae61f8");
+let client = new Kollet(process.env.API_KEY);
 
 describe('Kollet Merchant API Test', () => {
     it('Get all available currencies with valid API KEY', () => {
