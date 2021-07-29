@@ -102,7 +102,7 @@ class Kollet {
     }
 
     /**
-     * Get a balance of a particular cryptocurrency.
+     * Get balance of a particular cryptocurrency.
      * @param {string} currency This is the code of the supported cryptocurrency. 
      * Visit the supported cryptocurrency section to view the currencies supported and their various codes. e.g. BTC
      */

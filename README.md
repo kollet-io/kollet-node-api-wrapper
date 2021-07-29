@@ -13,36 +13,61 @@ Node API wrapper for the Kollet Merchant API
 npm i kollet-node-api-wrapper
 ```
 
-## 📝 Usage
+## 📝 Confuring and using module
 To access the API, you will need an accessToken or API Key from the merchant [dashboard]("https://app.kollet.io/developer/integrations"). 
 
+
+# Loading module
+Load the module via ```require``` and pass your API key to the Kollet class. 
 ```js
 const Kollet = require("kollet-node-api-wrapper")
 
 let client = new Kollet(process.env.accessToken);
 
-// Get currencies
+```
+# Common Usages
+
+Get all available currencies
+```js
+
 client.getCurrencies()
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
-// Create payment address
+```
+
+Create payment address
+```js
+
 client.createAddress('btc', 'kollet_user')
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
-// Get a balance of a particular cryptocurrency.
+```
+
+Get balance of a particular cryptocurrency
+```js
+
 client.getBalance("btc")
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
-// Get an estimated fee for sending funds on a particular cryptocurrency network.
+```
+
+Get an estimated fee for sending funds on a particular cryptocurrency network.
+```js
+
 client.estimateNetworkFee("0.000536", "btc", "FASTEST")
     .then(res => console.log(res))
     .catch(err => console.log(err))
 
-// Send out funds to another wallet address on a particular cryptocurrency network.
+```
+
+Send out funds to other wallet address on a particular cryptocurrency network.
+```js
+
 client.sendCoins("0.000536", "btc", "FASTEST", "XXXXXXXXXXXXXXXXXXXX")
     .then(res => console.log(res))
     .catch(err => console.log(err))
+
 ```
