@@ -10,7 +10,7 @@ Node API wrapper for the Kollet Merchant API
 
 ## 📦 Installation
 ```
-npm i kollet-node-api-wrapper
+npm i kollet-io-nodejs
 ```
 
 ## 📝 Confuring and using module
@@ -20,7 +20,7 @@ To access the API, you will need an accessToken or API Key from the merchant [da
 # Loading module
 Load the module via ```require``` and pass your API key to the Kollet class. 
 ```js
-const Kollet = require("kollet-node-api-wrapper")
+const Kollet = require("kollet-io-nodejs")
 
 let client = new Kollet(process.env.accessToken);
 
