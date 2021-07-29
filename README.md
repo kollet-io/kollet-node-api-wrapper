@@ -19,7 +19,9 @@ To access the API, you will need an accessToken or API Key from the merchant [da
 
 # Loading module
 Load the module via ```require``` and pass your API key to the Kollet class. 
+
 ```js
+
 const Kollet = require("kollet-io-nodejs")
 
 let client = new Kollet(process.env.accessToken);
@@ -28,6 +30,7 @@ let client = new Kollet(process.env.accessToken);
 # Common Usages
 
 Get all available currencies
+
 ```js
 
 client.getCurrencies()
@@ -37,6 +40,8 @@ client.getCurrencies()
 ```
 
 Create payment address
+- Takes the currency, label and optional meta data (type object) as arguments
+ 
 ```js
 
 client.createAddress('btc', 'kollet_user')
@@ -46,6 +51,8 @@ client.createAddress('btc', 'kollet_user')
 ```
 
 Get balance of a particular cryptocurrency
+- Accepts code of supported cryptocurrency e.g. btc
+
 ```js
 
 client.getBalance("btc")
@@ -55,6 +62,8 @@ client.getBalance("btc")
 ```
 
 Get an estimated fee for sending funds on a particular cryptocurrency network.
+- Accepts amount to send, currency code and duration
+
 ```js
 
 client.estimateNetworkFee("0.000536", "btc", "FASTEST")
@@ -64,6 +73,8 @@ client.estimateNetworkFee("0.000536", "btc", "FASTEST")
 ```
 
 Send out funds to other wallet address on a particular cryptocurrency network.
+- Takes amount to send, currency code, duration and destination address
+
 ```js
 
 client.sendCoins("0.000536", "btc", "FASTEST", "XXXXXXXXXXXXXXXXXXXX")

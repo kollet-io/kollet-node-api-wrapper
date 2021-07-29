@@ -2,11 +2,10 @@
  * Kollet Merchant API Node Wrapper
  * @author Kollet.io
  * @license MIT
- * @version 0.0.1 
+ * @version 0.1.1 
  */
 
 const fetch = require("node-fetch").default;
-const errorCodes = require('./errors')
 
 class Kollet {
     #baseUrl = "https://api.kollet.io/v1/";
@@ -63,7 +62,7 @@ class Kollet {
                 if (response.success) {
                     return response
                 } 
-                throw Error(`${response.errorCode}: ${response.message}`)
+                throw Error(response.message)
             })
             .catch(err => { throw Error(err.message) });
     }
