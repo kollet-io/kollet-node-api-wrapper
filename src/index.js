@@ -6,6 +6,7 @@
  */
 
 const fetch = require("node-fetch").default;
+const errorCodes = require('./errors')
 
 class Kollet {
     #baseUrl = "https://api.kollet.io/v1/";
@@ -24,9 +25,9 @@ class Kollet {
         this.apiKey = apiKey;
     };
 
-    _request(endpoint = "", options = {}) {
-        let url  = `${this.#baseUrl}${endpoint}`;
-        
+    #request = async (endpoint = "", options = {}) => {
+        let url = `${this.#baseUrl}${endpoint}`;
+
         let header = {
             "Content-Type": "application/json"
         };
@@ -47,7 +48,7 @@ class Kollet {
     /**
      * Get all the cryptocurrencies supported by Kollet.
      */
-    getCurrencies() {
+    async getCurrencies() {
         let url = this.#endpoints.currencies;
         let payload = {
             accessToken: this.apiKey
@@ -57,7 +58,14 @@ class Kollet {
             body: JSON.stringify(payload)
         };
 
-        return this._request(url, config);
+        return this.#request(url, config)
+            .then(response => {
+                if (response.success) {
+                    return response
+                } 
+                throw Error(`${response.errorCode}: ${response.message}`)
+            })
+            .catch(err => { throw Error(err.message) });
     }
 
     /**
@@ -69,7 +77,7 @@ class Kollet {
      * @param {object} metadata An optional field where you can store a JSON object. 
      * This field is attached to all webhooks when we are notifying you of new changes to the status of a payment.
      */
-    createAddress(currency = "", label = "", metadata = {}) {
+    async createAddress(currency = "", label = "", metadata = {}) {
         let url = this.#endpoints.create_address;
         let payload = {
             accessToken: this.apiKey,
@@ -83,7 +91,14 @@ class Kollet {
             body: JSON.stringify(payload)
         };
 
-        return this._request(url, config);
+        return this.#request(url, config)
+        .then(response => {
+            if (response.success) {
+                return response
+            } 
+            throw Error(`${response.errorCode}: ${response.message}`)
+        })
+        .catch(err => { throw Error(err.message) });
     }
 
     /**
@@ -91,19 +106,26 @@ class Kollet {
      * @param {string} currency This is the code of the supported cryptocurrency. 
      * Visit the supported cryptocurrency section to view the currencies supported and their various codes. e.g. BTC
      */
-    getBalance(currency = "") {
+    async getBalance(currency = "") {
         let url = this.#endpoints.balance;
         let payload = {
             accessToken: this.apiKey,
             currency
         };
-        
+
         let config = {
             method: "post",
             body: JSON.stringify(payload)
         };
 
-        return this._request(url, config);
+        return this.#request(url, config)
+        .then(response => {
+            if (response.success) {
+                return response
+            } 
+            throw Error(`${response.errorCode}: ${response.message}`)
+        })
+        .catch(err => { throw Error(err.message) });
     }
 
     /**
@@ -115,7 +137,7 @@ class Kollet {
      * fast you your recipient receive their funds. Refer to https://docs.kollet.io/docs/kollet-merchant/docs/2.0.Network-Fee-And-Duration.md
      * for the different durations.
      */
-    estimateNetworkFee(amount = "", currency = "", duration = "") {
+    async estimateNetworkFee(amount = "", currency = "", duration = "") {
         let url = this.#endpoints.estimate_fee;
         let payload = {
             accessToken: this.apiKey,
@@ -129,7 +151,14 @@ class Kollet {
             body: JSON.stringify(payload)
         };
 
-        return this._request(url, config);
+        return this.#request(url, config)
+        .then(response => {
+            if (response.success) {
+                return response
+            } 
+            throw Error(`${response.errorCode}: ${response.message}`)
+        })
+        .catch(err => { throw Error(err.message) });
     }
 
     /**
@@ -142,7 +171,7 @@ class Kollet {
      * for the different durations.
      * @param {string} recipient This is the destination. The receiving wallet address / recipient.
      */
-    sendCoins(amount = "", currency = "", duration = "", recipient = "") {
+    async sendCoins(amount = "", currency = "", duration = "", recipient = "") {
         let url = this.#endpoints.send;
         let payload = {
             accessToken: this.apiKey,
@@ -157,7 +186,14 @@ class Kollet {
             body: JSON.stringify(payload)
         };
 
-        return this._request(url, config);
+        return this.#request(url, config)
+        .then(response => {
+            if (response.success) {
+                return response
+            } 
+            throw Error(`${response.errorCode}: ${response.message}`)
+        })
+        .catch(err => { throw Error(err.message) });
     }
 }
 
