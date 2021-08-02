@@ -1,6 +1,6 @@
 {
-  "name": "kollet-io-nodejs",
-  "version": "0.1.2",
+  "name": "kollet-io",
+  "version": "0.1.3",
   "description": "Node API wrapper for the Kollet Merchant API",
   "main": "src/index.js",
   "scripts": {
